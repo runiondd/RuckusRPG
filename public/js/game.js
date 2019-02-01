@@ -1,7 +1,5 @@
 // ------------------------ Game Functions are below ------------------------
-$(document).ready(function () {
-
-	
+$(document).ready(function () {	
 
 	var url = window.location.search;
 	if (url.indexOf("?charID=") !== -1) {
