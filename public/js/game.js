@@ -6,16 +6,10 @@ $(document).ready(function () {
 	if (url.indexOf("?charID=") !== -1) {
 		charID = url.split("=")[1];
 	}
-<<<<<<< HEAD
 	if (url.indexOf("&q=") !== -1) {
 		currentQuestion = url.split("=")[2];
-=======
-	
-	var currentQuestion;
-	if (url.indexOf("&Q=") !== -1) {
-		currentQuestion = url.split("=")[1];
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 	}
+
 	// variable to store the current character made in main.html
 	var curChar = {
 		id: charID,
@@ -48,46 +42,12 @@ $(document).ready(function () {
 	});
 
 	// Intialize the game with hidden Divs
-<<<<<<< HEAD
 	$("#question1").hide();
 	$("#question2").hide();
 	$("#question3").hide();
 	$("#question4").hide();
 	$("#question5").hide();
 	$("#question6").hide();
-=======
-
-	switch (curChar.currentQuestion) {
-		case "question2":
-			$("#question1").hide();
-			$("#question2").show();
-			break;
-		case "question3":
-			$("#question2").hide();
-			$("#question3").show();
-			break;
-		case "question4":
-			$("#question3").hide();
-			$("#question4").show();
-			break;
-		case "question5":
-			$("#question4").hide();
-			$("#question5").show();
-			break;
-		case "question6":
-			$("#question5").hide();
-			$("#question6").show();
-			break;
-		default:
-			$("#question1").show();
-			$("#question2").hide();
-			$("#question3").hide();
-			$("#question4").hide();
-			$("#question5").hide();
-			$("#question6").hide();
-	}
-
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 
 	switch(currentQuestion) {
 		case ("question2"):
@@ -123,37 +83,20 @@ $(document).ready(function () {
 		//show/hide the correct questions 
 		switch (gameQuestion) {
 			case "question1":
-<<<<<<< HEAD
 			$(".stepImage").attr("src", "images/nick_the_lounge_singer.jpg");
 			currentQuestion = "question2";
-=======
-				$(".stepImage").attr("src", "images/nick_the_lounge_singer.jpg");
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				if (Q1 == "option1") {
 					curChar.knowlege++;
 					curChar.power--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
-=======
-					
-					currentQuestion = "question2";
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				} else if (Q1 == "option2") {
 					curChar.power++;
 					curChar.sanity--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
-=======
-					currentQuestion = "question2";
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				} else if (Q1 == "option3") {
 					curChar.sanity++;
 					curChar.knowlege--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
-=======
-					currentQuestion = "question2";
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				}
 				break;
 
@@ -167,26 +110,14 @@ $(document).ready(function () {
 					curChar.knowlege++;
 					curChar.power--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
-=======
-					currentQuestion = "question3";
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				} else if (Q2 == "option2") {
 					curChar.power++;
 					curChar.sanity--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
-=======
-					currentQuestion = "question3";
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				} else if (Q2 == "option3") {
 					curChar.sanity++;
 					curChar.knowlege--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
-=======
-					currentQuestion = "question3";
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				}
 
 				break;
@@ -199,26 +130,14 @@ $(document).ready(function () {
 					curChar.knowlege++;
 					curChar.power--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
-=======
-					currentQuestion = "question4";
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				} else if (Q3 == "option2") {
 					curChar.power++;
 					curChar.sanity--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
-=======
-					currentQuestion = "question4";
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				} else if (Q3 == "option3") {
 					curChar.sanity++;
 					curChar.knowlege--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
-=======
-					currentQuestion = "question4";
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				}
 
 				break;
@@ -231,29 +150,14 @@ $(document).ready(function () {
 					curChar.knowlege++;
 					curChar.power--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
-=======
-					$("#question4").hide();
-					$("#question5").show();
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				} else if (Q4 == "option2") {
 					curChar.power++;
 					curChar.sanity--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
-=======
-					$("#question4").hide();
-					$("#question5").show();
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				} else if (Q4 == "option3") {
 					curChar.sanity++;
 					curChar.knowlege--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
-=======
-					$("#question4").hide();
-					$("#question5").show();
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				}
 
 				break;
@@ -266,29 +170,14 @@ $(document).ready(function () {
 					curChar.knowlege++;
 					curChar.power--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
-=======
-					$("#question5").hide();
-					$("#question6").show();
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				} else if (Q5 == "option2") {
 					curChar.power++;
 					curChar.sanity--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
-=======
-					$("#question5").hide();
-					$("#question6").show();
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				} else if (Q5 == "option3") {
 					curChar.sanity++;
 					curChar.knowlege--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
-=======
-					$("#question5").hide();
-					$("#question6").show();
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				}
 
 				break;
@@ -299,27 +188,14 @@ $(document).ready(function () {
 					curChar.knowlege++;
 					curChar.power--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
-=======
-					$("#question6").hide();
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				} else if (Q1 == "option2") {
 					curChar.power++;
 					curChar.sanity--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-<<<<<<< HEAD
 				} else if (Q1 == "option3") {
 					curChar.sanity++;
 					curChar.knowlege--;
 					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power,currentQuestion)
-=======
-					$("#question6").hide();
-				} else if (Q1 == "option3") {
-					curChar.sanity++;
-					curChar.knowlege--;
-					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-					$("#question6").hide();
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 				}
 
 				endGame();
@@ -334,10 +210,6 @@ $(document).ready(function () {
 	}
 
 	function updateCharacter(charID, knowlege, sanity, power, currentQuestion) {
-<<<<<<< HEAD
-=======
-
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 		var updatedCharacter = {
 			id: charID,
 			name: name,
@@ -351,16 +223,11 @@ $(document).ready(function () {
 		updateCharacter.knowlege = knowlege;
 		updateCharacter.sanity = sanity;
 
-		alert(currentQuestion);
 		$.ajax({
 			method: "PUT",
 			url: "/api/updateCharacter",
 			data: updatedCharacter
-<<<<<<< HEAD
 		}).then($(location).attr('href',"/game?charID=" + curChar.id + "&q=" + currentQuestion));
-=======
-		}).then($(location).attr('href', "/game?charID=" + curChar.id + "&Q=" + currentQuestion));
->>>>>>> e6edb935ea29a1dff4d7feaa1063a7f2044001d5
 	}
 
 	function updatePlayerAttributesView() {
