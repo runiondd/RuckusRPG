@@ -56,7 +56,7 @@ $(document).ready(function () {
 		//show/hide the correct questions 
 		switch (gameQuestion) {
 			case "question1":
-				$(".stepImage").attr("src", "images/nick_the_lounge_singer.jpg");
+			$(".stepImage").attr("src", "images/nick_the_lounge_singer.jpg");
 
 				if (Q1 == "option1") {
 					curChar.knowlege++;
@@ -215,11 +215,13 @@ $(document).ready(function () {
 
 		var updatedCharacter = {
 			id: charID,
+			name: name,
 			power: power,
 			knowlege: knowlege,
 			sanity: sanity
 		};
 
+		updateCharacter.name = name;
 		updateCharacter.power = power;
 		updateCharacter.knowlege = knowlege;
 		updateCharacter.sanity = sanity;
@@ -228,7 +230,7 @@ $(document).ready(function () {
 			method: "PUT",
 			url: "/api/updateCharacter",
 			data: updatedCharacter
-		}).then(updatePlayerAttributesView());
+		}).then($(location).attr('href',"/game?charID=" + currentCharacter.id));
 	}
 
 	function updatePlayerAttributesView() {
