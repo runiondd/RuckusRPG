@@ -17,6 +17,8 @@ app.use(express.json());
 // Static directory to be served
 app.use(express.static("public"));
 
+var db =require("./models");
+
 // Routes
 // =============================================================
 require("./routes/api-routes.js")(app);
@@ -26,6 +28,8 @@ require("./routes/html-routes.js")(app);
 
 // Starts the server to begin listening
 // =============================================================
-app.listen(PORT, function() {
-  console.log("App listening on http://localhost:" + PORT);
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on http://localhost:" + PORT);
+  });
 });

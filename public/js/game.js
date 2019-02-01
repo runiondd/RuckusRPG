@@ -4,13 +4,14 @@ $(document).ready(function () {
 	if (url.indexOf("?charID=") !== -1) {
 		charID = url.split("=")[1];
 	}
-	var currentCharacter = {
-			id: charID,
-			name: "",
-			reputation: 0,
-			knowlege: 0,
-			sanity: 0
-		}; 
+	// variable to store the current character made in main.html
+	var curChar = {
+		id: charID,
+		name: "",
+		reputation: 0,
+		knowlege: 0,
+		sanity: 0
+	};
 
 	// get the Character's Attributes from the database and display on the screen
 	updatePlayerAttributesView();
@@ -42,68 +43,167 @@ $(document).ready(function () {
 	$("#question5").hide();
 	$("#question6").hide();
 
-	function handleQuestionSelection(gameQuestion) {			
-	//show/hide the correct questions 
-		switch(gameQuestion) {
+	function handleQuestionSelection(gameQuestion) {
+
+		// store condition of checked radio options
+		var Q1 = $('input:radio[name="Step1"]:checked').val();
+		var Q2 = $('input:radio[name="Step2"]:checked').val();
+		var Q3 = $('input:radio[name="Step3"]:checked').val();
+		var Q4 = $('input:radio[name="Step4"]:checked').val();
+		var Q5 = $('input:radio[name="Step5"]:checked').val();
+		var Q6 = $('input:radio[name="Step6"]:checked').val();
+
+		//show/hide the correct questions 
+		switch (gameQuestion) {
 			case "question1":
-				currentCharacter.knowlege++;
-				currentCharacter.sanity--;
-				currentCharacter.power++;
-				updateCharacter(currentCharacter.id, currentCharacter.knowlege, currentCharacter.sanity, currentCharacter.power)
 				$(".stepImage").attr("src", "images/nick_the_lounge_singer.jpg");
-				$("#question1").hide();
-				$("#question2").show();
-				$("#question3").hide();
-				$("#question4").hide();
-				$("#question5").hide();
-				$("#question6").hide();
+
+				if (Q1 == "option1") {
+					curChar.knowlege++;
+					curChar.power--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question1").hide();
+					$("#question2").show();
+				} else if (Q1 == "option2") {
+					curChar.power++;
+					curChar.sanity--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question1").hide();
+					$("#question2").show();
+				} else if (Q1 == "option3") {
+					curChar.sanity++;
+					curChar.knowlege--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question1").hide();
+					$("#question2").show();
+				}
 				break;
+
 			case "question2":
-				//adjust currentCharacter's attributes for choices
-				//call updateCharacter() 
+				//adjust curChar's attributes for choices
+				//call updateCharacter()
 				$(".stepImage").attr("src", "images/McGill_Stapler.jpg");
-				$("#question1").hide();
-				$("#question2").hide();
-				$("#question3").show();
-				$("#question4").hide();
-				$("#question5").hide();
-				$("#question6").hide();
+
+				if (Q2 == "option1") {
+					curChar.knowlege++;
+					curChar.power--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question2").hide();
+					$("#question3").show();
+				} else if (Q2 == "option2") {
+					curChar.power++;
+					curChar.sanity--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question2").hide();
+					$("#question3").show();
+				} else if (Q2 == "option3") {
+					curChar.sanity++;
+					curChar.knowlege--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question2").hide();
+					$("#question3").show();
+				}
+
 				break;
+
 			case "question3":
 				$(".stepImage").attr("src", "images/tuxedo_cake.jpg");
-				$("#question1").hide();
-				$("#question2").hide();
-				$("#question3").hide();
-				$("#question4").show();
-				$("#question5").hide();
-				$("#question6").hide();
+
+				if (Q3 == "option1") {
+					curChar.knowlege++;
+					curChar.power--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question3").hide();
+					$("#question4").show();
+				} else if (Q3 == "option2") {
+					curChar.power++;
+					curChar.sanity--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question3").hide();
+					$("#question4").show();
+				} else if (Q3 == "option3") {
+					curChar.sanity++;
+					curChar.knowlege--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question3").hide();
+					$("#question4").show();
+				}
+
 				break;
+
 			case "question4":
 				$(".stepImage").attr("src", "images/copier.png");
-				$("#question1").hide();
-				$("#question2").hide();
-				$("#question3").hide();
-				$("#question4").hide();
-				$("#question5").show();
-				$("#question6").hide();
+
+				if (Q4 == "option1") {
+					curChar.knowlege++;
+					curChar.power--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question4").hide();
+					$("#question5").show();
+				} else if (Q4 == "option2") {
+					curChar.power++;
+					curChar.sanity--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question4").hide();
+					$("#question5").show();
+				} else if (Q4 == "option3") {
+					curChar.sanity++;
+					curChar.knowlege--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question4").hide();
+					$("#question5").show();
+				}
+
 				break;
+
 			case "question5":
-				$(".stepImage").attr("src", "images/dont-make-me-go-all-caps-on-you.jpg" );
-				$("#question1").hide();
-				$("#question2").hide();
-				$("#question3").hide();
-				$("#question4").hide();
-				$("#question5").hide();
-				$("#question6").show();
+				$(".stepImage").attr("src", "images/dont-make-me-go-all-caps-on-you.jpg");
+
+				if (Q5 == "option1") {
+					curChar.knowlege++;
+					curChar.power--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question5").hide();
+					$("#question6").show();
+				} else if (Q5 == "option2") {
+					curChar.power++;
+					curChar.sanity--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question5").hide();
+					$("#question6").show();
+				} else if (Q5 == "option3") {
+					curChar.sanity++;
+					curChar.knowlege--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question5").hide();
+					$("#question6").show();
+				}
+
 				break;
+
 			case "question6":
-				$("#question1").hide();
-				$("#question2").hide();
-				$("#question3").hide();
-				$("#question4").hide();
-				$("#question5").hide();
-				$("#question6").show();
+
+				if (Q6 == "option1") {
+					curChar.knowlege++;
+					curChar.power--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question6").hide();
+				} else if (Q1 == "option2") {
+					curChar.power++;
+					curChar.sanity--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question6").hide();
+				} else if (Q1 == "option3") {
+					curChar.sanity++;
+					curChar.knowlege--;
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power)
+					$("#question6").hide();
+				}
+
+				endGame();
+
 				break;
+				
 			default:
 				//this should log an error **TODO**
 				break;
@@ -112,14 +212,13 @@ $(document).ready(function () {
 	}
 
 	function updateCharacter(charID, knowlege, sanity, power) {
-		alert("Update Character");
 
 		var updatedCharacter = {
 			id: charID,
 			power: power,
 			knowlege: knowlege,
 			sanity: sanity
-		};   
+		};
 
 		updateCharacter.power = power;
 		updateCharacter.knowlege = knowlege;
@@ -133,29 +232,29 @@ $(document).ready(function () {
 	}
 
 	function updatePlayerAttributesView() {
-		alert("Update View");
-		$.get("/api/character/" + currentCharacter.id, function (data) {
+		$.get("/api/character/" + curChar.id, function (data) {
 			$("#characterName").text(data[0].name);
 			$("#characterPower").text(data[0].power);
 			$("#characterKnowledge").text(data[0].knowlege);
 			$("#characterSanity").text(data[0].sanity);
 
-			//update the currentCharacter obj to be used by the rest of the app
-			currentCharacter.name = data[0].name;
-			currentCharacter.power = data[0].power;
-			currentCharacter.knowlege = data[0].knowlege;
-			currentCharacter.sanity = data[0].sanity;
+			//update the curChar obj to be used by the rest of the app
+			curChar.name = data[0].name;
+			curChar.power = data[0].power;
+			curChar.knowlege = data[0].knowlege;
+			curChar.sanity = data[0].sanity;
 		})
 	}
 
 	// Function to be run after the timer is up
 	function endGame() {
-		alert("end game");
-		// Show the completed Score Div
-		$("#end_container").show();
+		$(".stepImage").remove();
+		
+		if (curChar.power >= 8 && curChar.power > curChar.knowlege && curChar.power > curChar.sanity) {
+			$("#ending1").show();
+			alert("That's a lot of knowledge!!!")
+		}
 
-		// Set Scroll position so it looks good
-		window.scrollTo(0, 550);
 	}
 
 });
