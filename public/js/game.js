@@ -230,7 +230,7 @@ $(document).ready(function () {
 			method: "PUT",
 			url: "/api/updateCharacter",
 			data: updatedCharacter
-		}).then($(location).attr('href',"/game?charID=" + currentCharacter.id));
+		}).then($(location).attr('href',"/game?charID=" + curChar.id));
 	}
 
 	function updatePlayerAttributesView() {
