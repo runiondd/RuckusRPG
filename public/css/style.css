@@ -61,14 +61,24 @@ body {
 
 .stepRow {
     background-color: white;
-    margin: 25px 50px 75px 100px;
+    margin: 150px 50px 75px 100px;
     padding: 10px;
     opacity: 0.9;
     filter: alpha(opacity=50);
-    width: 1000px;
- 
+    width: 900px;
+    height: auto;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .stepImage {
     height: 320px;
+    width: auto;
+}
+
+h3 {
+    text-align: left;
+    font-size: 30px !important;
 }

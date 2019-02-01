@@ -49,7 +49,7 @@ $(document).ready(function () {
 				currentCharacter.knowlege++;
 				currentCharacter.sanity--;
 				currentCharacter.power++;
-				updateCharacter(currentCharacter.id, currentCharacter.knowlege, currentCharacter.sanity, currentCharacter.power)
+				updateCharacter(currentCharacter.id, currentCharacter.name, currentCharacter.knowlege, currentCharacter.sanity, currentCharacter.power)
 				$(".stepImage").attr("src", "images/nick_the_lounge_singer.jpg");
 				$("#question1").hide();
 				$("#question2").show();
@@ -111,16 +111,16 @@ $(document).ready(function () {
 		return;
 	}
 
-	function updateCharacter(charID, knowlege, sanity, power) {
-		alert("Update Character");
-
+	function updateCharacter(charID, name, knowlege, sanity, power) {
 		var updatedCharacter = {
 			id: charID,
+			name: name,
 			power: power,
 			knowlege: knowlege,
 			sanity: sanity
 		};   
 
+		updateCharacter.name = name;
 		updateCharacter.power = power;
 		updateCharacter.knowlege = knowlege;
 		updateCharacter.sanity = sanity;
@@ -129,12 +129,11 @@ $(document).ready(function () {
 			method: "PUT",
 			url: "/api/updateCharacter",
 			data: updatedCharacter
-		}).then(updatePlayerAttributesView());
+		}).then($(location).attr('href',"/game?charID=" + currentCharacter.id));
 	}
 
 	function updatePlayerAttributesView() {
-		alert("Update View");
-		$.get("/api/character/" + currentCharacter.id, function (data) {
+		$.get("/api/character/" + currentCharacter.id).then(function (data) {
 			$("#characterName").text(data[0].name);
 			$("#characterPower").text(data[0].power);
 			$("#characterKnowledge").text(data[0].knowlege);
