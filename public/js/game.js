@@ -247,13 +247,28 @@ $(document).ready(function () {
 
 	// Function to be run after the timer is up
 	function endGame() {
-		$(".stepImage").remove();
+        $(".stepImage").remove();
 
-		if (curChar.power >= 8 && curChar.power > curChar.knowlege && curChar.power > curChar.sanity) {
-			$("#ending1").show();
-			alert("That's a lot of knowledge!!!")
-		}
+		console.log("knowlege=" + curChar.knowlege);
+		console.log("power=" + curChar.power);
+		console.log("sanity=" + curChar.sanity);
 
-	}
+        if ( curChar.power > curChar.knowlege && curChar.power > curChar.sanity) {
+            $("#ending3").show();
+            alert("That's a lot of power!!!")
+        }
+        if ( curChar.sanity > curChar.knowlege && curChar.sanity > curChar.power) {
+            $("#ending3").show();
+            alert("That's a lot of sanity!!!")
+        }
+        if ( curChar.knowlege > curChar.power && curChar.knowlege > curChar.sanity) {
+            $("#ending4").show();
+            alert("That's a lot of knowledge!!!")
+        }
+        if (curChar.knowlege === curChar.power && curChar.power === curChar.sanity) {
+            $("#ending2").show();
+            alert("I'm not sure who wins.  Probably your manager.")
+        }
+    }
 
 });
