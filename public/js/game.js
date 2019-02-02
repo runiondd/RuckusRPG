@@ -10,6 +10,8 @@ $(document).ready(function () {
 		currentQuestion = url.split("=")[2];
 	}
 
+	console.log ("currentQuestion=" + currentQuestion);
+
 	// variable to store the current character made in main.html
 	var curChar = {
 		id: charID,
@@ -52,21 +54,29 @@ $(document).ready(function () {
 	switch(currentQuestion) {
 		case ("question2"):
 			$("#question2").show();
+			$(".stepImage").attr("src", "images/nick_the_lounge_singer.jpg");
 			break;
 		case ("question3"):
 			$("#question3").show();
+			$(".stepImage").attr("src", "images/McGill_Stapler.jpg");
 			break;
 		case ("question4"):
 			$("#question4").show();
+			$(".stepImage").attr("src", "images/tuxedo_cake.jpg");
 			break;
 		case ("question5"):
 			$("#question5").show();
+			$(".stepImage").attr("src", "images/copier.png");
 			break;
 		case ("question6"):
 			$("#question6").show();
+			$(".stepImage").attr("src", "images/dont-make-me-go-all-caps-on-you.jpg");
 			break;
+		case ("endGame"):
+			$(".stepImage").remove();
 		default:
 			$("#question1").show();
+			$(".stepImage").attr("src", "images/golden-parachute.gif");
 			break;
 	}
 
@@ -83,7 +93,7 @@ $(document).ready(function () {
 		//show/hide the correct questions 
 		switch (gameQuestion) {
 			case "question1":
-			$(".stepImage").attr("src", "images/nick_the_lounge_singer.jpg");
+			
 			currentQuestion = "question2";
 				if (Q1 == "option1") {
 					curChar.knowlege++;
@@ -100,10 +110,7 @@ $(document).ready(function () {
 				}
 				break;
 
-			case "question2":
-				//adjust curChar's attributes for choices
-				//call updateCharacter()
-				$(".stepImage").attr("src", "images/McGill_Stapler.jpg");
+			case "question2":				
 				currentQuestion = "question3";
 
 				if (Q2 == "option1") {
@@ -123,7 +130,7 @@ $(document).ready(function () {
 				break;
 
 			case "question3":
-				$(".stepImage").attr("src", "images/tuxedo_cake.jpg");
+				
 				currentQuestion = "question4";
 
 				if (Q3 == "option1") {
@@ -143,7 +150,7 @@ $(document).ready(function () {
 				break;
 
 			case "question4":
-				$(".stepImage").attr("src", "images/copier.png");
+				
 				currentQuestion = "question5";
 
 				if (Q4 == "option1") {
@@ -163,7 +170,6 @@ $(document).ready(function () {
 				break;
 
 			case "question5":
-				$(".stepImage").attr("src", "images/dont-make-me-go-all-caps-on-you.jpg");
 				currentQuestion = "question6";
 
 				if (Q5 == "option1") {
@@ -183,25 +189,21 @@ $(document).ready(function () {
 				break;
 
 			case "question6":
-
 				if (Q6 == "option1") {
 					curChar.knowlege++;
 					curChar.power--;
-					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-				} else if (Q1 == "option2") {
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, "endGame")
+				} else if (Q6 == "option2") {
 					curChar.power++;
 					curChar.sanity--;
-					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, currentQuestion)
-				} else if (Q1 == "option3") {
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, "endGame")
+				} else if (Q6 == "option3") {
 					curChar.sanity++;
 					curChar.knowlege--;
-					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power,currentQuestion)
+					updateCharacter(curChar.id, curChar.knowlege, curChar.sanity, curChar.power, "endGame")
 				}
-
 				endGame();
-
 				break;
-
 			default:
 				//this should log an error **TODO**
 				break;
@@ -223,11 +225,19 @@ $(document).ready(function () {
 		updateCharacter.knowlege = knowlege;
 		updateCharacter.sanity = sanity;
 
-		$.ajax({
-			method: "PUT",
-			url: "/api/updateCharacter",
-			data: updatedCharacter
-		}).then($(location).attr('href',"/game?charID=" + curChar.id + "&q=" + currentQuestion));
+		if (currentQuestion === "endGame") {
+			$.ajax({
+				method: "PUT",
+				url: "/api/updateCharacter",
+				data: updatedCharacter
+			});
+		} else {
+			$.ajax({
+				method: "PUT",
+				url: "/api/updateCharacter",
+				data: updatedCharacter
+			}).then($(location).attr('href',"/game?charID=" + curChar.id + "&q=" + currentQuestion));
+		}
 	}
 
 	function updatePlayerAttributesView() {
@@ -245,30 +255,38 @@ $(document).ready(function () {
 		})
 	}
 
+
 	// Function to be run after the timer is up
 	function endGame() {
-        $(".stepImage").remove();
+		$(".stepImage").remove();
+		$("#question1").hide();
+		$("#question2").hide();
+		$("#question3").hide();
+		$("#question4").hide();
+		$("#question5").hide();
+		$("#question6").hide();
+		$("#characterAttributesSection").hide();
+		
 
 		console.log("knowlege=" + curChar.knowlege);
 		console.log("power=" + curChar.power);
 		console.log("sanity=" + curChar.sanity);
-
-        if ( curChar.power > curChar.knowlege && curChar.power > curChar.sanity) {
-            $("#ending3").show();
-            alert("That's a lot of power!!!")
-        }
-        if ( curChar.sanity > curChar.knowlege && curChar.sanity > curChar.power) {
-            $("#ending3").show();
-            alert("That's a lot of sanity!!!")
-        }
-        if ( curChar.knowlege > curChar.power && curChar.knowlege > curChar.sanity) {
-            $("#ending4").show();
-            alert("That's a lot of knowledge!!!")
-        }
-        if (curChar.knowlege === curChar.power && curChar.power === curChar.sanity) {
-            $("#ending2").show();
-            alert("I'm not sure who wins.  Probably your manager.")
-        }
+		
+		if ( curChar.power > curChar.knowlege && curChar.power > curChar.sanity) {
+			$("#ending1").show();
+			alert("That's a lot of power!!!")
+		}
+		if ( curChar.sanity > curChar.knowlege && curChar.sanity > curChar.power) {
+			$("#ending3").show();
+			alert("That's a lot of sanity!!!")
+		}
+		if ( curChar.knowlege > curChar.power && curChar.knowlege > curChar.sanity) {
+			$("#ending4").show();
+			alert("That's a lot of knowledge!!!")
+		}
+		if (curChar.knowlege === curChar.power && curChar.power === curChar.sanity) {
+			$("#ending2").show();
+			alert("I'm not sure who wins.  Probably your manager.")
+		}
     }
-
 });
