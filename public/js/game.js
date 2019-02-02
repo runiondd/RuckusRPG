@@ -52,21 +52,27 @@ $(document).ready(function () {
 	switch(currentQuestion) {
 		case ("question2"):
 			$("#question2").show();
+			$(".stepImage").attr("src", "images/McGill_Stapler.jpg");
 			break;
 		case ("question3"):
 			$("#question3").show();
+			$(".stepImage").attr("src", "images/tuxedo_cake.jpg");
 			break;
 		case ("question4"):
 			$("#question4").show();
+			$(".stepImage").attr("src", "images/copier.png");
 			break;
 		case ("question5"):
 			$("#question5").show();
+			$(".stepImage").attr("src", "images/dont-make-me-go-all-caps-on-you.jpg");
 			break;
 		case ("question6"):
 			$("#question6").show();
+			$(".stepImage").attr("src", "images/nick_the_lounge_singer.jpg");
 			break;
 		default:
 			$("#question1").show();
+			$(".stepImage").attr("src", "images/nick_the_lounge_singer.jpg");
 			break;
 	}
 
